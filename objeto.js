@@ -1,5 +1,5 @@
 "use strict";
-//Clase Biblioteca
+//Clase Biblioteca prueba
 function Biblioteca (){
     this.usuarios=[];
     this.catalogo=[];
