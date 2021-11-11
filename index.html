@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML prueba</title>
+        <style>
+            .funcionAltaUsuario {
+                border: 1px solid black;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="funcionAltaUsuario">
+            <form name="formularioAltaUsuario">
+                ID del usuario: <input type="text" name="idUsuario"><p>
+                Nombre: <input type="text" name="nombreUsuario"><p>
+                Apellidos: <input type="text" name="apellidosUsuario"><p>
+                Teléfono: <input type="number" name="telefonoUsuario" ><p>
+                <input type="button" name="botonEnviar" value="Enviar" onclick="ejemplo()">
+                <input type="reset" name="botonBorrar" value="Cancelar">
+            </form>
+        </div>
+        <script src="objeto.js"></script>
+        <script src="principal.js"></script>
+    </body>
+</html>
