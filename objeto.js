@@ -7,26 +7,34 @@ function Biblioteca (){
 }
 Biblioteca.prototype.altaUsuario = function(idUsu,nombre,apellidos,telefono) 
 {
-    let nuevoUs = new Usuario(idUsu,nombre,apellidos,telefono);
     let alerta;
-    let bExiste=false;
-    for(let i=0;i<this.usuarios.length;i++)
+
+    if(buscaUsuario(idUsu,this.usuarios))
     {
-        if(this.usuarios[i].idUsuario == nuevoUs.idUsuario)
-        {
-            alerta = "Ya existe ese usuario";
-            bExiste = true;
-        }
+        alerta = "Ya existia ese usuario.";
     }
-    if(!bExiste)
+    else
     {
+        let nuevoUs = new Usuario(idUsu,nombre,apellidos,telefono);
         this.usuarios.push(nuevoUs);
-        alerta = "Usuario añadido."
+        alerta = "Usuario añadido.";
     }
 
     return alerta;
 
 }
+Biblioteca.prototype.listadoUsuarios = function(){
+
+    let sTabla = '<table class="table table-striped table-hover">';
+    sTabla += "<thead><tr><th>Id</th><th>Nombre</th><th>Apellido</th><th>Tlfn</th></thead>";
+    sTabla += "<tbody>";
+    for(let oUsu of this.usuarios){
+        sTabla += oUsu.toHTMLRow();
+    }
+    sTabla += "</tbody></table>";
+  
+    return sTabla;
+  }
 Biblioteca.prototype.altaArticulo = function(oArticulo){
     let bArticuloCreado=(this.catalogo.filter(arti => arti.iIdArticulo == oArticulo.iIdArticulo).length == 1);
     if(bArticuloCreado==false){
@@ -37,8 +45,21 @@ Biblioteca.prototype.altaArticulo = function(oArticulo){
     }
     return alerta;
 }
+Biblioteca.prototype.listadoArticulos= function(){
+
+    let sTabla = "<table border='1' id='tablaArticulos'>";
+    sTabla += "<thead><tr><th>ID</th><th>Título</th></tr></thead>";
+    sTabla += "<tbody>";
+    for(let articulos of this.articulos){
+        sTabla += articulos.toHTMLRow;
+    }
+    sTabla += "</tbody></table>";
+
+    return sTabla;
+}
 //Clase Prestamo
 class Prestamo {
+
 
     constructor(idPrestamo,articulos,usuario,fechainicio,fechaFin){
         this.idPrestamo=idPrestamo;
@@ -49,9 +70,20 @@ class Prestamo {
     }
 
     toHTMLRow() {
-        
-    }
+        let sTabla = "<table border='1'>";
+        sTabla += "<td>" + this.idPrestamo + "</td>";
+        for(let articulos of Articulo){
+            sTabla += "<tr><td>" + articulos.idArticulo + "</td>";
+            sTabla += "<td>" + articulos.titulo + "</td></tr>";
+        }
+        sTabla += "<td>" + this.usuario + "</td>";
+        sTabla += "<td>" + this.fechainicio+ "</td>";
+        sTabla += "<td>" + this.fechaFin + "</td>";
 
+        sTabla += "</table>";
+
+        return sTabla;
+    }
 
 }
 
@@ -123,4 +155,15 @@ class Usuario
     return sFila;
     }
 
+}
+function buscaUsuario(idUsu,tablaUsuarios) //Devuelve true  si ya existe un  usuario.
+{
+    for(let i=0;i<tablaUsuarios.length;i++)
+    {
+        if(tablaUsuarios[i].idUsuario == idUsu)
+        {
+           return true;
+        }
+    }
+    return false;
 }

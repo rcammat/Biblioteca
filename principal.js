@@ -25,7 +25,15 @@ function añadeArticulo(){
         oBliblioteca.añadeArticulo(oArticulo);
     }
 }
+function listadoUsuarios(){
+    ocultarTodosLosFormularios();
+    document.getElementById("formularioListadoUsuarios").style.display = "Block";
 
+    let tabla=oBliblioteca.listadoUsuarios();
+
+
+    document.getElementById("tablaUsuarios").innerHTML=tabla;
+}
 function ocultarTodosLosFormularios(){
     document.getElementById('formularioAltaUsuario').style.display='none';
     document.getElementById('formularioAltaArticulo').style.display='none';
@@ -37,3 +45,4 @@ function ocultarTodosLosFormularios(){
     document.getElementById('formularioListadoPrestamosUsuarios').style.display='none';
     document.getElementById('formularioListadoTiposArticulos').style.display='none';
 }
+
