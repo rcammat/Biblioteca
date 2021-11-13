@@ -40,7 +40,7 @@ Biblioteca.prototype.altaArticulo = function(oArticulo){
     if(this.catalogo.filter(arti => arti.iIdArticulo == oArticulo.iIdArticulo).length == 1){
          alerta = "Articulo con un ID igual";
     }else {
-        this.catalogo.push(oArticulo);
+         this.catalogo.push(oArticulo);
          alerta = "Articulo Añadido";
 
     }
@@ -48,11 +48,12 @@ Biblioteca.prototype.altaArticulo = function(oArticulo){
 }
 Biblioteca.prototype.listadoArticulos= function(){
 
-    let sTabla = "<table border='1' id='tablaArticulos'>";
+    let sTabla = '<table class="table table-striped table-hover">';
     sTabla += "<thead><tr><th>ID</th><th>Título</th></tr></thead>";
     sTabla += "<tbody>";
-    for(let articulos of this.articulos){
-        sTabla += articulos.toHTMLRow;
+    for(let articulos of this.catalogo){
+        sTabla += "<tr><td>"+articulos.iIdArticulo+"</td>";
+        sTabla += "<td>"+articulos.sTitulo+"</td></tr>";
     }
     sTabla += "</tbody></table>";
 
@@ -114,8 +115,10 @@ class DVD extends Articulo {
 
     toHTMLRow() {
         let sFila = "<tr>";
+        sFila += "<td>" + this.iIdArticulo + "</td>";
+        sFila += "<td>" + this.sTitulo + "</td>";
         sFila += "<td>" + this.fechaEstreno + "</td>";
-        sFila += "<td>" + this.subtitulada + "</td>";
+        sFila += "<td>" + (this.subtitulada?"Si":"No") + "</td>";
         sFila += "</tr>";
         return sFila;
     }
@@ -132,6 +135,8 @@ class Libro extends Articulo{
 
     toHTMLRow() {
         let fila="<tr>";
+        fila += "<td>" + this.iIdArticulo + "</td>";
+        fila += "<td>" + this.sTitulo + "</td>";
         fila+="<td>"+this.autor+"</td>";
         fila+="<td>"+this.paginas+"</td>";
         fila+="</tr>";

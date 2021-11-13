@@ -42,6 +42,12 @@ function listadoUsuarios(){
 
     document.getElementById("tablaUsuarios").innerHTML=tabla;
 }
+function listadoArticulos(){
+    ocultarTodosLosFormularios();
+    document.getElementById("formularioListadoArticulos").style.display = "Block";
+    let sTabla = oBliblioteca.listadoArticulos();
+    document.getElementById('tablaArticulos').innerHTML=sTabla;
+}
 function ocultarTodosLosFormularios(){
     document.getElementById('formularioAltaUsuario').style.display='none';
     document.getElementById('formularioAltaArticulo').style.display='none';
