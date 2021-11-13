@@ -35,6 +35,18 @@
                 margin: 5px;
             }
 
+            .libroElegido, .dvdElegido {
+                display: none;
+            }
+
+            #libro:active .libroElegido{
+                display: block !important;
+            }
+
+            #dvd:active .dvdElegido{
+                display: block !important;
+            }
+
             form {
                 display: none;
             }
@@ -53,7 +65,7 @@
                     <li><a href="#" onclick="gestionFormularios('formularioAltaArticulo');">Alta Artículo</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioAltaPrestamo');">Alta Préstamo</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioDevolverPrestamo');">Devolver Préstamo</a></li>
-                    <li><a href="#" onclick="gestionFormularios('formularioListadoUsuarios');">Listar Usuarios</a></li>
+                    <li><a href="#" onclick="listadoUsuarios()">Listar Usuarios</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioListadoArticulos');">Listar Artículos</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioListadoPrestamos');">Listar Préstamos</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioListadoPrestamosUsuario');">Listar Préstamos Usuarios</a></li>
@@ -143,10 +155,8 @@
             <form class="form-horizontal" name="formularioListadoUsuarios" id="formularioListadoUsuarios">
                 <fieldset>
                     <legend>Lista de Usuarios</legend>
-                    <div class="form-group formularioListadoUsuarios">
-                        <table class="table table-striped table-hover" id="tablaUsuarios">
-                            <tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Teléfono</th></tr>
-                        </table>
+                    <div class="form-group formularioListadoUsuarios" id="tablaUsuarios">
+                       
                     </div>
                 </fieldset>
             </form>
