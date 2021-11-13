@@ -76,7 +76,7 @@
         <hr>
         <div class="container-fluid" id="formularios">
             <!--Alta de Usuario-->
-            <form class="form-horizontal" id="formularioAltaUsuario">
+            <form class="form-horizontal" name="formularioAltaUsuario" id="formularioAltaUsuario">
                 <fieldset>
                     <legend>Alta de Usuario</legend>
                     <div class="form-group">
@@ -84,7 +84,7 @@
                         <input type="text" name="nombreUsuario" placeholder="Nombre" class="form-control input-md"><p>
                         <input type="text" name="apellidosUsuario" placeholder="Apellidos" class="form-control input-md"><p>
                         <input type="number" name="telefonoUsuario" placeholder="Teléfono" class="form-control input-md"><p>
-                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar">
+                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="añadeUsuario()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
                 </fieldset>
@@ -111,13 +111,13 @@
                             <input type="radio" id="no" name="SubtituladaDVD" value="no">
                             <label for="no">No subtitulada</label>
                         </div>
-                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar">
+                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="añadeArticulo()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
                 </fieldset>
             </form>
             <!--Alta de Préstamo-->
-            <form class="form-horizontal" name="formularioAltaPréstamo" id="formularioAltaPréstamo">
+            <form class="form-horizontal" name="formularioAltaPrestamo" id="formularioAltaPrestamo">
                 <fieldset>
                     <legend>Alta de Préstamo</legend>
                     <div class="form-group">
@@ -130,7 +130,7 @@
                         </select><p>
                         <input type="date" name="fechaInicio" placeholder="Fecha de Inicio" class="form-control input-md"><p>
                         <input type="date" name="fechaFin" placeholder="Fecha de Fin" class="form-control input-md"><p>
-                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar">
+                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="añadePrestamo()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
                 </fieldset>
@@ -146,7 +146,7 @@
                         <select id="articuloDevolverPrestamo" name="articuloDevolverPrestamo">
                             <option>Seleccione un artículo...</option>
                         </select>
-                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar">
+                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="devuelvePrestamo()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
                 </fieldset>
@@ -154,9 +154,10 @@
             <!--Lista de Usuarios-->
             <form class="form-horizontal" name="formularioListadoUsuarios" id="formularioListadoUsuarios">
                 <fieldset>
-                    <div class="form-group" id="formularioListadoUsuarios">
+                    <legend>Lista de Usuarios</legend>
+                    <div class="form-group formularioListadoUsuarios">
                         <table class="table table-striped table-hover" id="tablaUsuarios">
-                            
+                            <tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Teléfono</th></tr>
                         </table>
                     </div>
                 </fieldset>
@@ -164,9 +165,10 @@
             <!--Lista de Artículos-->
             <form class="form-horizontal" name="formularioListadoUsuarios" id="formularioListadoUsuarios">
                 <fieldset>
-                    <div class="form-group" id="formularioListadoUsuarios">
+                    <legend>Lista de Usuarios</legend>
+                    <div class="form-group formularioListadoUsuarios">
                         <table class="table table-striped table-hover" id="tablaArticulos">
-                            
+                            <tr><th>ID</th><th>Título</th></tr>
                         </table>
                     </div>
                 </fieldset>
@@ -174,8 +176,38 @@
             <!--Lista de Préstamos-->
             <form class="form-horizontal" name="formularioListadoPrestamos" id="formularioListadoPrestamos">
                 <fieldset>
-                    <div class="form-group" id="formularioListadoPrestamos">
+                    <legend>Lista de Usuarios</legend>
+                    <div class="form-group formularioListadoPrestamos">
+                        <input type="date" name="fechaInicio" placeholder="Fecha de Inicio" class="form-control input-md"><p>
+                        <input type="date" name="fechaFin" placeholder="Fecha de Fin" class="form-control input-md"><p>
                         <table class="table table-striped table-hover" id="tablaPrestamos">
+                            <tr><th>ID</th><th>Artículos</th><th>Usuario</th><th>Fecha de Inicio</th><th>Fecha de Fin</th></tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </form>
+            <!--Listado Préstamos de Usuarios-->
+            <form class="form-horizontal" name="formularioListadoPrestamosUsuarios" id="formularioListadoPrestamosUsuarios">
+                <fieldset>
+                    <legend>Lista de Usuarios</legend>
+                    <input type="text" name="idUsuario" placeholder="Id de Usuario" class="form-control input-md"><p>
+                    <div class="form-group formularioListadoPrestamosUsuarios">
+                        <table class="table table-striped table-hover" id="tablaPrestamosUsuarios">
+                            
+                        </table>
+                    </div>
+                </fieldset>
+            </form>
+            <!--Listado Tipo de Artículos-->
+            <form class="form-horizontal" name="formularioListadoTipoArticulos" id="formularioListadoTiposArticulos">
+                <fieldset>
+                    <legend>Lista de Tipos de Artículos</legend>
+                    <input type="radio" id="listadoLibro" name="articulo" value="libro" class="elegir">
+                    <label for="libro">Libro</label><br>
+                    <input type="radio" id="listadoDVD" name="articulo" value="dvd" class="elegir">
+                    <label for="listadoDVD">DVD</label><br>
+                    <div class="form-group formularioListadoTipoArticulos">
+                        <table class="table table-striped table-hover" id="tablaTipoArticulos">
                             
                         </table>
                     </div>
@@ -183,6 +215,6 @@
             </form>
         </div>
         <script type="text/javascript" src="objeto.js"></script>
-        <script type="text/javascript" src="codigo.js"></script>
+        <script type="text/javascript" src="principal.js"></script>
     </body>
 </html>
