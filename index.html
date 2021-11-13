@@ -121,16 +121,15 @@
                 <fieldset>
                     <legend>Alta de Préstamo</legend>
                     <div class="form-group">
-                        <input type="text" name="idPrestamo" placeholder="ID" class="form-control input-md"><p>
-                        <select id="articuloaltaPrestamoPrestamo" name="articuloAltaPrestamo">
-                            <option>Seleccione un artículo...</option>
+                        <input type="text" name="idPrestamo" placeholder="ID Prestamo" class="form-control input-md"><p>
+                        <select id="comboArti" name="articuloAltaPrestamo">
+                           
                         </select><p>
-                        <select id="usuarioAltaPrestamo" name="articuloAltaPrestamo">
-                            <option>Seleccione un usuario...</option>
+                        <input type="text" name="idUsuario" placeholder="id usuario" class="form-control input-md"><p>                          
                         </select><p>
                         <input type="date" name="fechaInicio" placeholder="Fecha de Inicio" class="form-control input-md"><p>
                         <input type="date" name="fechaFin" placeholder="Fecha de Fin" class="form-control input-md"><p>
-                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="añadePrestamo()">
+                        <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="creaPrestamo()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
                 </fieldset>

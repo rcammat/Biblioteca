@@ -26,11 +26,13 @@ function añadeArticulo(){
         }
         let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
         alert(oBliblioteca.altaArticulo(oArticulo));
+        document.getElementById("comboArti").innerHTML=crearComboArticulos();
     }else {
         let sAutor =formularioAltaArticulo.sAutor.value;
         let iNumPaginas = formularioAltaArticulo.iNumPaginas.value;
         let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
         alert(oBliblioteca.altaArticulo(oArticulo));
+        document.getElementById("comboArti").innerHTML=crearComboArticulos();
     }
 }
 function listadoUsuarios(){
@@ -69,3 +71,20 @@ function mostrarContenido(){
     }
 }
 
+function creaPrestamo() {
+    
+    let iIdPrestamo = formularioAltaPrestamo.idPrestamo.value;
+    let arrayArticulos = new array();
+    let iIdUsuario = formularioAltaPrestamo.idUsuario.value;
+    let dFechaInicio = formularioAltaPrestamo.fechaInicio.value;
+    let dFechaFin = formularioAltaPrestamo.fechaFin.value;
+    if (oBliblioteca.buscaUsuario(iIdUsuario,oBliblioteca.usuarios)) {
+        let usuarioSinPrestamos = oBliblioteca.obtenerUsuario(iIdUsuario);
+        let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);
+        alert(oBliblioteca.añadePrestamo(oPrestamo));
+    }
+    else{
+        alert("No existe ese usuario.");
+    }
+
+}
