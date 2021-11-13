@@ -16,13 +16,21 @@ function añadeUsuario(){
 function añadeArticulo(){
     let iIdArticulo = formularioAltaArticulo.idArticulo.value;
     let sTitulo = formularioAltaArticulo.sTitulo.value;
-
+    let bSubtitulada;
     if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
+        let dFechaEstreno=formularioAltaArticulo.dFechaEstreno.value;
+        if(formularioAltaArticulo.Subtitulada.checked){
+            bSubtitulada=true;
+        }else {
+            bSubtitulada=false;
+        }
         let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
-        oBliblioteca.añadeArticulo(oArticulo);
+        alert(oBliblioteca.altaArticulo(oArticulo));
     }else {
+        let sAutor =formularioAltaArticulo.sAutor.value;
+        let iNumPaginas = formularioAltaArticulo.iNumPaginas.value;
         let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
-        oBliblioteca.añadeArticulo(oArticulo);
+        alert(oBliblioteca.altaArticulo(oArticulo));
     }
 }
 function listadoUsuarios(){
@@ -44,5 +52,14 @@ function ocultarTodosLosFormularios(){
     document.getElementById('formularioListadoPrestamos').style.display='none';
     document.getElementById('formularioListadoPrestamosUsuarios').style.display='none';
     document.getElementById('formularioListadoTiposArticulos').style.display='none';
+}
+function mostrarContenido(){
+    if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
+        document.getElementById('libroElegido').style.display='none';
+        document.getElementById('dvdElegido').style.display='Block';
+    }else {
+        document.getElementById('dvdElegido').style.display='none';
+        document.getElementById('libroElegido').style.display='Block';
+    }
 }
 

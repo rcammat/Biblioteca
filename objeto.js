@@ -36,12 +36,13 @@ Biblioteca.prototype.listadoUsuarios = function(){
     return sTabla;
   }
 Biblioteca.prototype.altaArticulo = function(oArticulo){
-    let bArticuloCreado=(this.catalogo.filter(arti => arti.iIdArticulo == oArticulo.iIdArticulo).length == 1);
-    if(bArticuloCreado==false){
-        this.catalogo.push(oArticulo);
-        let alerta = "Articulo Añadido";
+    let alerta;
+    if(this.catalogo.filter(arti => arti.iIdArticulo == oArticulo.iIdArticulo).length == 1){
+         alerta = "Articulo con un ID igual";
     }else {
-        let alerta = "Articulo con un ID igual";
+        this.catalogo.push(oArticulo);
+         alerta = "Articulo Añadido";
+
     }
     return alerta;
 }
@@ -105,7 +106,8 @@ class Articulo {
 //Clase DVD
 class DVD extends Articulo {
 
-    constructor(fechaEstreno,subtitulada){
+    constructor(idArticulo,titulo,fechaEstreno,subtitulada){
+        super(idArticulo,titulo);
         this.fechaEstreno=fechaEstreno;
         this.subtitulada=subtitulada;
     }

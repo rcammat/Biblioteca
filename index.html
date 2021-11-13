@@ -96,19 +96,19 @@
                     <div class="form-group">
                         <input type="text" name="idArticulo" placeholder="ID" class="form-control input-md"><p>
                         <input type="text" name="sTitulo" placeholder="Título" class="form-control input-md"><p>
-                        <input type="radio" id="radiobtnTipoArticuloLibro" name="articulo" value="libro" class="elegir">
+                        <input type="radio" id="radiobtnTipoArticuloLibro" name="articulo" value="libro" class="elegir" onclick=mostrarContenido()>
                         <label for="libro">Libro</label><br>
-                        <input type="radio" id="radiobtnTipoArticuloDVD" name="articulo" value="dvd" class="elegir">
+                        <input type="radio" id="radiobtnTipoArticuloDVD" name="articulo" value="dvd" class="elegir" onclick=mostrarContenido()>
                         <label for="dvd">DVD</label><br>
-                        <div class="libroElegido">
-                            <input type="text" name="autorLibro" placeholder="Autor" class="form-control input-md"><p>
-                            <input type="number" name="paginasLibro" placeholder="Páginas" class="form-control input-md"><p>
+                        <div class="libroElegido" id="libroElegido">
+                            <input type="text" name="autorLibro" placeholder="Autor" class="form-control input-md" id="sAutor"><p>
+                            <input type="number" name="paginasLibro" placeholder="Páginas" class="form-control input-md" id="iNumPaginas"><p>
                         </div>
-                        <div class="dvdElegido">
-                            <input type="date" name="fechaEstenoDVD" placeholder="Fecha de Estreno" class="form-control input-md"><p>
-                            <input type="radio" id="si" name="SubtituladaDVD" value="si">
+                        <div class="dvdElegido" id="dvdElegido">
+                            <input type="date" name="fechaEstenoDVD" placeholder="Fecha de Estreno" class="form-control input-md"  id="dFechaEstreno"><p>
+                            <input type="radio" id="Subtitulada" name="SubtituladaDVD" value="si">
                             <label for="si">Subtitulada</label>
-                            <input type="radio" id="no" name="SubtituladaDVD" value="no">
+                            <input type="radio" id="NoSubtitulada" name="SubtituladaDVD" value="no">
                             <label for="no">No subtitulada</label>
                         </div>
                         <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="añadeArticulo()">
