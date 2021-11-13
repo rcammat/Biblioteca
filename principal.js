@@ -17,11 +17,11 @@ function añadeArticulo(){
     let iIdArticulo = formularioAltaArticulo.idArticulo.value;
     let sTitulo = formularioAltaArticulo.sTitulo.value;
 
-    if(formularioAltaArticulo.radiobtnTipoArticulo.value == "DVD"){
-        let oArticulo= new DVD(idArticulo,sTitulo,dFechaEstreno,bSubtitulada);
+    if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
+        let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
         oBliblioteca.añadeArticulo(oArticulo);
     }else {
-        let oArticulo= new DVD(idArticulo,sTitulo,sAutor,iNumPaginas);
+        let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
         oBliblioteca.añadeArticulo(oArticulo);
     }
 }
@@ -34,6 +34,6 @@ function ocultarTodosLosFormularios(){
     document.getElementById('formularioListadoUsuarios').style.display='none';
     document.getElementById('formularioListadoArticulos').style.display='none';
     document.getElementById('formularioListadoPrestamos').style.display='none';
-    document.getElementById('formularioListadoPrestamosUsuario').style.display='none';
-    document.getElementById('formularioListadoTipoArticulos').style.display='none';
+    document.getElementById('formularioListadoPrestamosUsuarios').style.display='none';
+    document.getElementById('formularioListadoTiposArticulos').style.display='none';
 }
