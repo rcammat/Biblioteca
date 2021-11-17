@@ -231,9 +231,9 @@ function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
 function crearComboArticulos()
 {
     let cadena = "<option>Seleccione un articulo...</option>";
-    for(let i=0;i<oBliblioteca.catalogo.length;i++)
+    for(let i=0;i<oBiblioteca.catalogo.length;i++)
     {
-       cadena +=  "<option>"+oBliblioteca.catalogo[i].sTitulo+"</option>";
+       cadena +=  "<option>"+oBiblioteca.catalogo[i].sTitulo+"</option>";
     }
     return cadena;
 }

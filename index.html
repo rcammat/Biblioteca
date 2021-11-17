@@ -124,9 +124,15 @@
                         <input type="text" name="idPrestamo" placeholder="ID Prestamo" class="form-control input-md"><p>
                         <select id="comboArti" name="articuloAltaPrestamo">
                            
-                        </select><p>
+                        </select>
+                        <input type="button" value="Añadir" onclick="añadirArticulo()">
+                        <br>
+                        <textarea name="textAreaArticulos" id="textAreaArticulos" cols="30" rows="10" disabled > </textarea>
                         <input type="text" name="idUsuario" placeholder="id usuario" class="form-control input-md"><p>                          
-                        </select><p>
+                        </select>
+                        
+
+                       
                         <input type="date" name="fechaInicio" placeholder="Fecha de Inicio" class="form-control input-md"><p>
                         <input type="date" name="fechaFin" placeholder="Fecha de Fin" class="form-control input-md"><p>
                         <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="creaPrestamo()">
