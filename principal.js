@@ -49,19 +49,15 @@ function añadeArticulo(){
     }
 }
 function listadoUsuarios(){
+    var oVentanaUsuarios = window.open("ListadoDeUsuarios.html","nuevaVentana1");
+    let elemento = oVentanaUsuarios.document.getElementById('escribirTablaUsuarios');
     ocultarTodosLosFormularios();
-    document.getElementById("formularioListadoUsuarios").style.display = "Block";
-
-    let tabla=oBiblioteca.listadoUsuarios();
-
-
-    document.getElementById("tablaUsuarios").innerHTML=tabla;
+    oVentanaUsuarios.document.write(oBliblioteca.listadoUsuarios());
 }
 function listadoArticulos(){
+    var oVentanaArticulos = window.open("ListadoDeArticulos.html","nuevaVentana2");
+    oVentanaArticulos.document.write(oBliblioteca.listadoArticulos());
     ocultarTodosLosFormularios();
-    document.getElementById("formularioListadoArticulos").style.display = "Block";
-    let sTabla = oBiblioteca.listadoArticulos();
-    document.getElementById('tablaArticulos').innerHTML=sTabla;
 }
 function ocultarTodosLosFormularios(){
     document.getElementById('formularioAltaUsuario').style.display='none';
