@@ -7,8 +7,8 @@ function añadeDatos(){
     oBiblioteca.altaUsuario("3","Messi","Chuiquito","069");
     oBiblioteca.altaArticulo(new Libro("1","EL quijote","Juan",450));
     oBiblioteca.altaArticulo(new Libro("2","Blancabieve","Pepe",177));
-    oBiblioteca.altaArticulo(new DVD("1","AnuelPrr",new Date(2020/10/18),true));
-    oBiblioteca.altaArticulo(new DVD("2","Bandolera",new Date(1970/8/1),false));
+    oBiblioteca.altaArticulo(new DVD("4","AnuelPrr",new Date(2020/10/18),true));
+    oBiblioteca.altaArticulo(new DVD("5","Bandolera",new Date(1970/8/1),false));
     document.getElementById("comboArti").innerHTML=crearComboArticulos();
 }
 function gestionFormularios(sNombreFormulario){
@@ -88,8 +88,8 @@ function creaPrestamo() {
     let iIdUsuario = formularioAltaPrestamo.idUsuario.value;
     let dFechaInicio = formularioAltaPrestamo.fechaInicio.value;
     let dFechaFin = formularioAltaPrestamo.fechaFin.value;
-    if (oBiblioteca.buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
-        let usuarioSinPrestamos = oBiblioteca.obtenerUsuario(iIdUsuario);
+    if (buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
+        let usuarioSinPrestamos = obtenerUsuario(iIdUsuario);
         let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);
         alert(oBiblioteca.añadePrestamo(oPrestamo));
     }
