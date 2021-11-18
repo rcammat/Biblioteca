@@ -35,6 +35,16 @@ Biblioteca.prototype.listadoUsuarios = function(){
   
     return sTabla;
   }
+  Biblioteca.prototype.listadoPrestamosPorFecha = function(fechaIn,fechaFinal){
+    let sTabla="";
+    for(let prestamo of oBiblioteca.prestamos)
+    {
+        if(prestamo.fechainicio >= fechaIn && prestamo.fechaFin <= fechaFinal)
+        sTabla += prestamo.toHTMLRow();
+    }
+    return sTabla;
+}
+
 Biblioteca.prototype.altaArticulo = function(oArticulo){
     let alerta;
     if(this.catalogo.filter(arti => arti.iIdArticulo == oArticulo.iIdArticulo).length == 1){
@@ -89,8 +99,15 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
 
 }
 Biblioteca.prototype.listadoPrestamosUsuarios = function(idUsuario){
-    //let oPrestamo = this.prestamos.filter(oPres => oPres.usuario.idUsuario == idUsuario);
-    let sTabla = oBiblioteca.prestamos[0].toHTMLRow();
+   let arrayPrestamosdelUsuario = obtenPrestamosDelUsuario(idUsuario);
+/*
+    let oPrestamo = this.prestamos.filter(oPres => oPres.usuario.idUsuario == idUsuario);
+    let sTabla = oPrestamo[0].toHTMLRow();*/
+
+    let sTabla ="";
+    for(let prestamoUsu of arrayPrestamosdelUsuario)
+    sTabla += prestamoUsu.toHTMLRow();
+
     return sTabla;
 }
 
@@ -268,4 +285,15 @@ function finalizarPrestamo(idPres){
         }
     }
     return "No se encontro el prestamo.";
+}
+
+function obtenPrestamosDelUsuario(idUsu)
+{
+    let arrayTodosLosPrestamosUsuario = new Array();
+    for(let prestamo of oBiblioteca.prestamos)
+    {
+        if(prestamo.usuario.idUsuario == idUsu)
+        arrayTodosLosPrestamosUsuario.push(prestamo);
+    }
+    return arrayTodosLosPrestamosUsuario;
 }

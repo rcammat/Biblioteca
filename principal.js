@@ -24,7 +24,7 @@ function añadeUsuario(){
     let sNombre=formularioAltaUsuario.nombreUsuario.value;
     let sApellidos=formularioAltaUsuario.apellidosUsuario.value;
     let iTelefono=formularioAltaUsuario.telefonoUsuario.value;
-    alert(oBiblioteca.altaUsuario(iIdUsuario,sNombre,sApellidos,iTelefono));
+    mostrarMensaje(oBiblioteca.altaUsuario(iIdUsuario,sNombre,sApellidos,iTelefono));
 }
 function añadeArticulo(){
     let iIdArticulo = formularioAltaArticulo.idArticulo.value;
@@ -144,6 +144,8 @@ function añadirArticulo(){
         }else{
             alert("Ya esta añadido ese articulo");
     }
+
+    
 }
 function fechaHoy() {
     document.getElementById('fechaInicio').value = new Date().toISOString().slice(0, 10)
@@ -181,6 +183,25 @@ function listarTiposArticulos(){
     document.getElementById("tablaTipoArticulos").innerHTML=cadena;
 }
 function listarPrestamosUsuarios(){
-    let idUsuario=document.getElementById("idUsuario").value;
+    let idUsuario=formularioListadoPrestamosUsuarios.idUsuario.value;
     document.getElementById("tablaPrestamosUsuarios").innerHTML=oBiblioteca.listadoPrestamosUsuarios(idUsuario);
+}
+
+function listarPrestamosFecha(){
+    let fechaInicio = formularioListadoPrestamos.fechaInicio.value;
+    let fechaFin = formularioListadoPrestamos.fechaFin.value;
+    let cadena = "<tr><th>ID</th><th>Artículos</th><th>Usuario</th><th>Fecha de Inicio</th><th>Fecha de Fin</th></tr>";
+    cadena += oBiblioteca.listadoPrestamosPorFecha(fechaInicio,fechaFin);
+
+    document.getElementById("tablaPrestamos").innerHTML=cadena;
+
+}
+
+function mostrarMensaje(mensaje){
+    document.getElementById("capaMensajes").innerHTML="<p>"+mensaje+"</p>"+'<button onclick="cierraMensaje()">Cerrar</button>';
+    document.getElementById("capaMensajes").style.display="block";
+    document.getElementById("capaMensajes").style.zIndex="2";
+}
+function cierraMensaje(){
+    document.getElementById("capaMensajes").style.display="none";
 }
