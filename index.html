@@ -145,12 +145,7 @@
                 <fieldset>
                     <legend>Devolver Préstamo</legend>
                     <div class="form-group">
-                        <select id="usuarioDevolverPrestamo" name="usuarioDevolverPrestamo">
-                            <option>Seleccione un usuario...</option>
-                        </select><p>
-                        <select id="articuloDevolverPrestamo" name="articuloDevolverPrestamo">
-                            <option>Seleccione un artículo...</option>
-                        </select>
+                        <input type="text" name="idPrestamo" placeholder="ID Prestamo" class="form-control input-md"><p>
                         <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="devuelvePrestamo()">
                         <input type="reset" name="botonCancelar" class="btn btn-secondary" value="Cancelar">
                     </div>
@@ -213,6 +208,7 @@
                             
                         </table>
                     </div>
+                    <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="listarTiposArticulos()">
                 </fieldset>
             </form>
         </div>

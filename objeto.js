@@ -67,13 +67,13 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
         if(this.prestamos[i].idPrestamo == oPrestamo.idPrestamo)
         {
           bExistePrestamo=true;
-          alerta="Ya existe es prestamo.";
+          alerta="Ya existe este prestamo.";
         }
     }
 
-    if(buscarUsuarioEnPrestamo(oPrestamo.usuario.idUsuario,this.prestamos))
+    if(buscarUsuarioEnPrestamoActivo(oPrestamo.usuario.idUsuario,this.prestamos))
     {
-        alerta="Este usuario ya tiene un prestamo.";
+        alerta="Este usuario tiene un prestamo activo.";
         bExistePrestamo=true;
     }
 
@@ -233,13 +233,16 @@ function obtenerUsuario(idUsuario) { //Devuelve true si el usuario no tiene ning
     }
 }
 
-function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
+function buscarUsuarioEnPrestamoActivo(idUsu,tablaPrestamos)
 {
     for(let i=0;i<tablaPrestamos.length;i++)
     {
         if(tablaPrestamos[i].usuario.idUsuario == idUsu)
         {
-           return true;
+            if(tablaPrestamos[i].fechaFin > new Date().toISOString().slice(0, 10))
+            {
+                return true;
+            }
         }
     }
     return false;
@@ -266,4 +269,16 @@ function arrayLibro(aPrincipal){//De una array devuelvo solo los Libros
 function buscarArticuloPorTitulo(sTitulo){//Busca un articulo por su nombre
     let oArticulo = oBiblioteca.catalogo.filter(oArti=>oArti.sTitulo==sTitulo);
     return oArticulo[0];
+}
+
+function finalizarPrestamo(idPres){
+    for(let i=0;i<oBiblioteca.prestamos.length;i++)
+    {
+        if(oBiblioteca.prestamos[i].idPrestamo == idPres)
+        {
+            oBiblioteca.prestamos[i].fechaFin =  new Date().toISOString().slice(0, 10);
+            return "Prestamo finalizado.";
+        }
+    }
+    return "No se encontro el prestamo.";
 }

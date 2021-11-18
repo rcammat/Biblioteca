@@ -143,3 +143,35 @@ function añadirArticulo(){
 function fechaHoy() {
     document.getElementById('fechaInicio').value = new Date().toISOString().slice(0, 10)
 }
+
+function devuelvePrestamo(){
+    let idPrestamo = formularioDevolverPrestamo.idPrestamo.value;
+
+    alert(finalizarPrestamo(idPrestamo));
+} 
+
+
+function listarTiposArticulos(){
+    let seleccion = formularioListadoTipoArticulos.articulo.value;
+    let cadena ="";
+    if(seleccion == "libro")
+    {
+      let arrayLibros = arrayLibro(oBiblioteca.catalogo);
+        cadena += "<th>Id Articulo</th><th>Titulo</th><th>Autor</th><th>Num Paginas</th><tr>";
+      for(let libro of arrayLibros)
+      {
+        cadena += libro.toHTMLRow();
+      }
+
+    }
+    else{
+        let Dvds = arrayDVD(oBiblioteca.catalogo);
+        cadena += "<th>Id Articulo</th><th>Titulo</th><th>Fecha estreno</th><th>Subtitulada</th><tr>";
+        for(let dvd of Dvds)
+        {
+          cadena += dvd.toHTMLRow();
+        }
+    }
+
+    document.getElementById("tablaTipoArticulos").innerHTML=cadena;
+}
