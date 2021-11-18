@@ -88,14 +88,14 @@ function creaPrestamo() {
     
     let iIdPrestamo = formularioAltaPrestamo.idPrestamo.value;
     let arrayTituloArticulos = formularioAltaPrestamo.textAreaArticulos.value.split("\n");
-    let arrayArticulos = new Array();
+    let arrayArticulos=new Array();
     let iIdUsuario = formularioAltaPrestamo.idUsuario.value;
     let dFechaInicio = formularioAltaPrestamo.fechaInicio.value;
     let dFechaFin = formularioAltaPrestamo.fechaFin.value;
     for( let sTitulo of arrayTituloArticulos){
+        if(sTitulo!="")
          arrayArticulos.push((buscarArticuloPorTitulo(sTitulo)));
     }
-
     if (buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
         let usuarioSinPrestamos = obtenerUsuario(iIdUsuario);
         let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);

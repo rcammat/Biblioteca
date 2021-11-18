@@ -89,8 +89,8 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
 
 }
 Biblioteca.prototype.listadoPrestamosUsuarios = function(idUsuario){
-    let sTabla = this.prestamos.filter(oPres => oPres.usuario.idUsuario = idUsuario);
-    sTabla = sTabla[0].toHTMLRow();
+    //let oPrestamo = this.prestamos.filter(oPres => oPres.usuario.idUsuario == idUsuario);
+    let sTabla = oBiblioteca.prestamos[0].toHTMLRow();
     return sTabla;
 }
 
@@ -141,8 +141,8 @@ class Articulo {
 //Clase DVD
 class DVD extends Articulo {
 
-    constructor(idArticulo,titulo,fechaEstreno,subtitulada){
-        super(idArticulo,titulo);
+    constructor(idArticulo,sTitulo,fechaEstreno,subtitulada){
+        super(idArticulo,sTitulo);
         this.fechaEstreno=fechaEstreno;
         this.subtitulada=subtitulada;
     }
@@ -161,8 +161,8 @@ class DVD extends Articulo {
 }
 //Clase Libro
 class Libro extends Articulo{
-    constructor (idArticulo, titulo, autor, paginas) {
-        super(idArticulo, titulo);
+    constructor (idArticulo, sTitulo, autor, paginas) {
+        super(idArticulo, sTitulo);
         this.autor=autor;
         this.paginas=paginas;
     }
