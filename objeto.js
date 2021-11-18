@@ -71,16 +71,16 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
         }
     }
 
-    if(buscarUsuarioEnPrestamo(oPrestamo.usuario.idUsuario,this.prestamos))
+    if(buscarUsuarioEnPrestamo(oPrestamo.usuario.idUsuario ,this.prestamos))
     {
-        alerta("Este usuario ya tiene un prestamo.");
+        alerta="Este usuario ya tiene un prestamo.";
         bExistePrestamo=true;
     }
 
 
     if(!bExistePrestamo){
     this.prestamos.push(oPrestamo);
-    alerta("Prestamo añadido.");
+    alerta="Prestamo añadido.";
     }
 
 
@@ -207,11 +207,11 @@ function buscaUsuario(idUsu,tablaUsuarios) //Devuelve true  si ya existe un  usu
 
 
 function obtenerUsuario(idUsuario) { //Devuelve true si el usuario no tiene ningun prestamo.
-    for(let i=0;i<tablaUsuarios.length;i++)
+    for(let i=0;i<oBiblioteca.usuarios.length;i++)
     {
-        if(tablaUsuarios[i].idUsuario == idUsuario)
+        if(oBiblioteca.usuarios[i].idUsuario == idUsuario)
         {
-           return tablaUsuarios[i];
+           return oBiblioteca.usuarios[i];
         }
     }
 }
@@ -220,7 +220,7 @@ function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
 {
     for(let i=0;i<tablaPrestamos.length;i++)
     {
-        if(tablaUsuarios[i].usuario.idUsuario == idUsu)
+        if(tablaPrestamos[i].usuario.idUsuario == idUsu)
         {
            return true;
         }

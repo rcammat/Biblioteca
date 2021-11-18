@@ -2,7 +2,7 @@
 let oBiblioteca =  new Biblioteca();
 añadeDatos();
 function añadeDatos(){
-    oBiblioteca.altaUsuario("1","Juan","Perez","112");
+    oBiblioteca.altaUsuario(1,"Juan","Perez","112");
     oBiblioteca.altaUsuario("2","Pepe","Montoya","016");
     oBiblioteca.altaUsuario("3","Messi","Chuiquito","069");
     oBiblioteca.altaArticulo(new Libro("1","EL quijote","Juan",450));
@@ -84,7 +84,7 @@ function mostrarContenido(){
 function creaPrestamo() {
     
     let iIdPrestamo = formularioAltaPrestamo.idPrestamo.value;
-    let arrayArticulos = new Array();
+    let arrayArticulos = formularioAltaPrestamo.textAreaArticulos.value.split("\n");
     let iIdUsuario = formularioAltaPrestamo.idUsuario.value;
     let dFechaInicio = formularioAltaPrestamo.fechaInicio.value;
     let dFechaFin = formularioAltaPrestamo.fechaFin.value;
@@ -101,5 +101,5 @@ function creaPrestamo() {
 
 function añadirArticulo(){
     let sArticulo =document.getElementById('comboArti').value;
-    document.getElementById('textAreaArticulos').innerHTML+=sArticulo;
+    document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
 }
