@@ -228,6 +228,18 @@ function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
     return false;
 }
 
+function obtenerUsuarioEnPrestamo(idUsu,tablaPrestamos)
+{
+    for(let i=0;i<tablaPrestamos.length;i++)
+    {
+        if(tablaPrestamos[i].usuario.idUsuario == idUsu)
+        {
+           return tablaPrestamos[i];
+        }
+    }
+}
+
+
 function crearComboArticulos()
 {
     let cadena = "<option>Seleccione un articulo...</option>";

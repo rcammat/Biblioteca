@@ -69,7 +69,7 @@ function ocultarTodosLosFormularios(){
     document.getElementById('formularioListadoArticulos').style.display='none';
     document.getElementById('formularioListadoPrestamos').style.display='none';
     document.getElementById('formularioListadoPrestamosUsuarios').style.display='none';
-    document.getElementById('formularioListadoTiposArticulos').style.display='none';
+    document.getElementById('formularioListadoTipoArticulos').style.display='none';
 }
 function mostrarContenido(){
     if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
@@ -98,6 +98,12 @@ function creaPrestamo() {
     }
 
 }
+
+function listarPrestamosUsuarios(){
+    let usuarioId = formularioListadoPrestamosUsuarios.idUsuario.value;
+    buscarUsuarioEnPrestamo(usuarioId,oBiblioteca.prestamos);
+}
+
 
 function añadirArticulo(){
     let sArticulo =document.getElementById('comboArti').value;

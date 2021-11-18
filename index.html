@@ -68,7 +68,7 @@
                     <li><a href="#" onclick="listadoUsuarios()">Listar Usuarios</a></li>
                     <li><a href="#" onclick="listadoArticulos()">Listar Artículos</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioListadoPrestamos');">Listar Préstamos</a></li>
-                    <li><a href="#" onclick="gestionFormularios('formularioListadoPrestamosUsuario');">Listar Préstamos Usuarios</a></li>
+                    <li><a href="#" onclick="gestionFormularios('formularioListadoPrestamosUsuarios');">Listar Préstamos Usuarios</a></li>
                     <li><a href="#" onclick="gestionFormularios('formularioListadoTipoArticulos');">Listar Tipos Artículos</a></li>
                 </ul>
             </div>
@@ -127,7 +127,7 @@
                         </select>
                         <input type="button" value="Añadir" onclick="añadirArticulo()">
                         <br>
-                        <textarea name="textAreaArticulos" id="textAreaArticulos" cols="30" rows="10" readonly > </textarea>
+                        <textarea name="textAreaArticulos" id="textAreaArticulos" cols="30" rows="10" disabled > </textarea>
                         <input type="text" name="idUsuario" placeholder="id usuario" class="form-control input-md"><p>                          
                         </select>
                         
@@ -197,10 +197,11 @@
                             
                         </table>
                     </div>
+                    <input type="button" name="botonAceptar" class="btn btn-primary" value="Aceptar" onclick="listarPrestamosUsuarios()">
                 </fieldset>
             </form>
             <!--Listado Tipo de Artículos-->
-            <form class="form-horizontal" name="formularioListadoTipoArticulos" id="formularioListadoTiposArticulos">
+            <form class="form-horizontal" name="formularioListadoTipoArticulos" id="formularioListadoTipoArticulos">
                 <fieldset>
                     <legend>Lista de Tipos de Artículos</legend>
                     <input type="radio" id="listadoLibro" name="articulo" value="libro" class="elegir">
