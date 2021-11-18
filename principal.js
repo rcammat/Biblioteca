@@ -1,6 +1,7 @@
 "use strict";
 let oBiblioteca =  new Biblioteca();
 añadeDatos();
+fechaHoy();
 function añadeDatos(){
     oBiblioteca.altaUsuario(1,"Juan","Perez","112");
     oBiblioteca.altaUsuario("2","Pepe","Montoya","016");
@@ -138,4 +139,7 @@ function añadirArticulo(){
         }else{
             alert("Ya esta añadido ese articulo");
     }
+}
+function fechaHoy() {
+    document.getElementById('fechaInicio').value = new Date().toISOString().slice(0, 10)
 }

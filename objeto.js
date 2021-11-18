@@ -88,6 +88,23 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
 
 
 }
+Biblioteca.prototype.listadoPrestamosUsuarios = function(idUsuario){
+    let arrayPrestamosUsuario =this.prestamos.filter(oPres => oPres.usuario.idUsuario = idUsuario)
+    let sTabla ="";
+    for(pres of arrayPrestamosUsuario){
+        sTabla += "<tr><td>"+pres.idPrestamo+"</td>";
+        sTabla += "<td>";
+        for(arti of pres.articulo){
+            sTabla += "<td>"+arti.nombre+", </td>";
+        }
+        sTabla +="</td>";
+        sTabla += "<td>"+pres.usuario.nombre+"</td>";
+        sTabla += "<td>"+pres.fechainicio+"</td>";
+        sTabla += "<td>"+pres.fechaFin+"</td>";
+    }
+
+    return sTabla;
+}
 
 //Clase Prestamo
 class Prestamo {
