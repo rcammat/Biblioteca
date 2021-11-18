@@ -38,13 +38,13 @@ function añadeArticulo(){
             bSubtitulada=false;
         }
         let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
-        alert(oBiblioteca.altaArticulo(oArticulo));
+        mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
         document.getElementById("comboArti").innerHTML=crearComboArticulos();
     }else {
         let sAutor =formularioAltaArticulo.sAutor.value;
         let iNumPaginas = formularioAltaArticulo.iNumPaginas.value;
         let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
-        alert(oBiblioteca.altaArticulo(oArticulo));
+        mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
         document.getElementById("comboArti").innerHTML=crearComboArticulos();
     }
 }
@@ -99,10 +99,10 @@ function creaPrestamo() {
     if (buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
         let usuarioSinPrestamos = obtenerUsuario(iIdUsuario);
         let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);
-        alert(oBiblioteca.añadePrestamo(oPrestamo));
+        mostrarMensaje(oBiblioteca.añadePrestamo(oPrestamo));
     }
     else{
-        alert("No existe ese usuario.");
+        mostrarMensaje("No existe ese usuario.");
     }
 
 }
@@ -134,15 +134,15 @@ function añadirArticulo(){
             document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
             
         }else if (arrayDVDs.length ==2 && buscarArticuloPorTitulo(sArticulo) instanceof DVD){
-            alert("No se puede añadir mas DVDs");
+            mostrarMensaje("No se puede añadir mas DVDs");
         } 
         if (arrayLibros.length<2 && buscarArticuloPorTitulo(sArticulo) instanceof Libro) {
                 document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
         }else if ( arrayLibros.length==2 && buscarArticuloPorTitulo(sArticulo) instanceof Libro)  {
-            alert("No se puede añadir mas Libros");
+            mostrarMensaje("No se puede añadir mas Libros");
         }
         }else{
-            alert("Ya esta añadido ese articulo");
+            mostrarMensaje("Ya esta añadido ese articulo");
     }
 
     
@@ -154,7 +154,7 @@ function fechaHoy() {
 function devuelvePrestamo(){
     let idPrestamo = formularioDevolverPrestamo.idPrestamo.value;
 
-    alert(finalizarPrestamo(idPrestamo));
+    mostrarMensaje(finalizarPrestamo(idPrestamo));
 } 
 
 
