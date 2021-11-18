@@ -71,16 +71,16 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
         }
     }
 
-    if(buscarUsuarioEnPrestamo(oPrestamo.usuario.idUsuario ,this.prestamos))
+    if(buscarUsuarioEnPrestamo(oPrestamo.usuario.idUsuario,this.prestamos))
     {
-        alerta="Este usuario ya tiene un prestamo.";
+        alerta("Este usuario ya tiene un prestamo.");
         bExistePrestamo=true;
     }
 
 
     if(!bExistePrestamo){
     this.prestamos.push(oPrestamo);
-    alerta="Prestamo añadido.";
+    alerta("Prestamo añadido.");
     }
 
 
@@ -207,11 +207,11 @@ function buscaUsuario(idUsu,tablaUsuarios) //Devuelve true  si ya existe un  usu
 
 
 function obtenerUsuario(idUsuario) { //Devuelve true si el usuario no tiene ningun prestamo.
-    for(let i=0;i<oBiblioteca.usuarios.length;i++)
+    for(let i=0;i<tablaUsuarios.length;i++)
     {
-        if(oBiblioteca.usuarios[i].idUsuario == idUsuario)
+        if(tablaUsuarios[i].idUsuario == idUsuario)
         {
-           return oBiblioteca.usuarios[i];
+           return tablaUsuarios[i];
         }
     }
 }
@@ -220,7 +220,7 @@ function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
 {
     for(let i=0;i<tablaPrestamos.length;i++)
     {
-        if(tablaPrestamos[i].usuario.idUsuario == idUsu)
+        if(tablaUsuarios[i].usuario.idUsuario == idUsu)
         {
            return true;
         }
@@ -228,24 +228,25 @@ function buscarUsuarioEnPrestamo(idUsu,tablaPrestamos)
     return false;
 }
 
-function obtenerUsuarioEnPrestamo(idUsu,tablaPrestamos)
-{
-    for(let i=0;i<tablaPrestamos.length;i++)
-    {
-        if(tablaPrestamos[i].usuario.idUsuario == idUsu)
-        {
-           return tablaPrestamos[i];
-        }
-    }
-}
-
-
 function crearComboArticulos()
 {
-    let cadena = "<option>Seleccione un articulo...</option>";
+    let cadena = "";
     for(let i=0;i<oBiblioteca.catalogo.length;i++)
     {
        cadena +=  "<option>"+oBiblioteca.catalogo[i].sTitulo+"</option>";
     }
     return cadena;
+}
+function arrayDVD(aPrincipal){//De una array devuelvo solo los DVD
+    let arrayADevolver =aPrincipal.filter(oDVD => oDVD instanceof DVD)
+    return arrayADevolver;
+}
+
+function arrayLibro(aPrincipal){//De una array devuelvo solo los Libros
+    let arrayADevolver = aPrincipal.filter(oLibro => oLibro instanceof Libro);
+    return arrayADevolver;
+}
+function buscarArticuloPorTitulo(sTitulo){//Busca un articulo por su nombre
+    let oArticulo = oBiblioteca.catalogo.filter(oArti=>oArti.sTitulo==sTitulo);
+    return oArticulo[0];
 }

@@ -5,10 +5,12 @@ function añadeDatos(){
     oBiblioteca.altaUsuario(1,"Juan","Perez","112");
     oBiblioteca.altaUsuario("2","Pepe","Montoya","016");
     oBiblioteca.altaUsuario("3","Messi","Chuiquito","069");
-    oBiblioteca.altaArticulo(new Libro("1","EL quijote","Juan",450));
-    oBiblioteca.altaArticulo(new Libro("2","Blancabieve","Pepe",177));
+    oBiblioteca.altaArticulo(new Libro("1","El quijote","Juan",450));
+    oBiblioteca.altaArticulo(new Libro("2","Blancanieve","Pepe",177));
+    oBiblioteca.altaArticulo(new Libro("3","Pinocho","Ibai",217));
     oBiblioteca.altaArticulo(new DVD("4","AnuelPrr",new Date(2020/10/18),true));
     oBiblioteca.altaArticulo(new DVD("5","Bandolera",new Date(1970/8/1),false));
+    oBiblioteca.altaArticulo(new DVD("6","BadBunny",new Date(1970/8/1),false));
     document.getElementById("comboArti").innerHTML=crearComboArticulos();
 }
 function gestionFormularios(sNombreFormulario){
@@ -107,5 +109,33 @@ function listarPrestamosUsuarios(){
 
 function añadirArticulo(){
     let sArticulo =document.getElementById('comboArti').value;
-    document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
+    let arrayTituloArticulos =formularioAltaPrestamo.textAreaArticulos.value.split("\n");
+    let arrayArticulos=new Array();
+    let bEstaAñadido=false;
+
+    for(let i in arrayTituloArticulos){
+        if(arrayTituloArticulos[i]==sArticulo){
+            bEstaAñadido=true;
+        }
+        arrayArticulos.push(buscarArticuloPorTitulo(arrayTituloArticulos[i]));
+    }
+    
+    let arrayDVDs=arrayDVD(arrayArticulos);
+    let arrayLibros=arrayLibro(arrayArticulos);
+
+    if ( bEstaAñadido==false ){
+        if(arrayDVDs.length <2 && buscarArticuloPorTitulo(sArticulo) instanceof DVD  ){
+            document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
+            
+        }else if (arrayDVDs.length ==2 && buscarArticuloPorTitulo(sArticulo) instanceof DVD){
+            alert("No se puede añadir mas DVDs");
+        } 
+        if (arrayLibros.length<2 && buscarArticuloPorTitulo(sArticulo) instanceof Libro) {
+                document.getElementById('textAreaArticulos').innerHTML+=sArticulo+"\n";
+        }else if ( arrayLibros.length==2 && buscarArticuloPorTitulo(sArticulo) instanceof Libro)  {
+            alert("No se puede añadir mas Libros");
+        }
+        }else{
+            alert("Ya esta añadido ese articulo");
+    }
 }
