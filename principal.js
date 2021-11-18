@@ -4,8 +4,8 @@ añadeDatos();
 fechaHoy();
 function añadeDatos(){
     oBiblioteca.altaUsuario(1,"Juan","Perez","112");
-    oBiblioteca.altaUsuario("2","Pepe","Montoya","016");
-    oBiblioteca.altaUsuario("3","Messi","Chuiquito","069");
+    oBiblioteca.altaUsuario(2,"Pepe","Montoya","016");
+    oBiblioteca.altaUsuario(3,"Messi","Chuiquito","069");
     oBiblioteca.altaArticulo(new Libro("1","El quijote","Juan",450));
     oBiblioteca.altaArticulo(new Libro("2","Blancanieve","Pepe",177));
     oBiblioteca.altaArticulo(new Libro("3","Pinocho","Ibai",217));
