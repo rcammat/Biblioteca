@@ -89,20 +89,8 @@ Biblioteca.prototype.añadePrestamo = function(oPrestamo) {
 
 }
 Biblioteca.prototype.listadoPrestamosUsuarios = function(idUsuario){
-    let arrayPrestamosUsuario =this.prestamos.filter(oPres => oPres.usuario.idUsuario = idUsuario)
-    let sTabla ="";
-    for(pres of arrayPrestamosUsuario){
-        sTabla += "<tr><td>"+pres.idPrestamo+"</td>";
-        sTabla += "<td>";
-        for(arti of pres.articulo){
-            sTabla += "<td>"+arti.nombre+", </td>";
-        }
-        sTabla +="</td>";
-        sTabla += "<td>"+pres.usuario.nombre+"</td>";
-        sTabla += "<td>"+pres.fechainicio+"</td>";
-        sTabla += "<td>"+pres.fechaFin+"</td>";
-    }
-
+    let sTabla = this.prestamos.filter(oPres => oPres.usuario.idUsuario = idUsuario);
+    sTabla = sTabla[0].toHTMLRow();
     return sTabla;
 }
 
@@ -120,14 +108,13 @@ class Prestamo {
 
     toHTMLRow() {
         let sTabla = "<table border='1'>";
-        sTabla += "<td>" + this.idPrestamo + "</td>";
-        for(let articulos of Articulo){
-            sTabla += "<tr><td>" + articulos.idArticulo + "</td>";
-            sTabla += "<td>" + articulos.titulo + "</td></tr>";
+        sTabla += "<tr><td>" + this.idPrestamo + "</td><td>";
+        for(let arti of this.articulos){
+            sTabla += arti.sTitulo;
         }
-        sTabla += "<td>" + this.usuario + "</td>";
+        sTabla += "</td><td>" + this.usuario.nombre + "</td>";
         sTabla += "<td>" + this.fechainicio+ "</td>";
-        sTabla += "<td>" + this.fechaFin + "</td>";
+        sTabla += "<td>" + this.fechaFin + "</td></tr>";
 
         sTabla += "</table>";
 
