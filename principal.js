@@ -16,6 +16,7 @@ function añadeDatos(){
 }
 function gestionFormularios(sNombreFormulario){
     ocultarTodosLosFormularios();
+    document.getElementById(sNombreFormulario).reset();
     document.getElementById(sNombreFormulario).style.display = "Block";
 }
 
@@ -24,39 +25,57 @@ function añadeUsuario(){
     let sNombre=formularioAltaUsuario.nombreUsuario.value;
     let sApellidos=formularioAltaUsuario.apellidosUsuario.value;
     let iTelefono=formularioAltaUsuario.telefonoUsuario.value;
-    mostrarMensaje(oBiblioteca.altaUsuario(iIdUsuario,sNombre,sApellidos,iTelefono));
+    if(iIdUsuario =="" || sNombre == "" || sApellidos == "" || iTelefono == ""){
+        mostrarMensaje("Debe rellenar todos los campos");
+    }else{
+        mostrarMensaje(oBiblioteca.altaUsuario(iIdUsuario,sNombre,sApellidos,iTelefono));
+        ocultarTodosLosFormularios();
+    }
+ 
 }
 function añadeArticulo(){
     let iIdArticulo = formularioAltaArticulo.idArticulo.value;
     let sTitulo = formularioAltaArticulo.sTitulo.value;
     let bSubtitulada;
-    if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
-        let dFechaEstreno=formularioAltaArticulo.dFechaEstreno.value;
-        if(formularioAltaArticulo.Subtitulada.checked){
-            bSubtitulada=true;
-        }else {
-            bSubtitulada=false;
-        }
-        let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
-        mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
-        document.getElementById("comboArti").innerHTML=crearComboArticulos();
+    if(iIdArticulo == "" || sTitulo == "" ){
+        mostrarMensaje("Debes rellenar todos los campos");
     }else {
-        let sAutor =formularioAltaArticulo.sAutor.value;
-        let iNumPaginas = formularioAltaArticulo.iNumPaginas.value;
-        let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
-        mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
-        document.getElementById("comboArti").innerHTML=crearComboArticulos();
+        if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
+            let dFechaEstreno=formularioAltaArticulo.dFechaEstreno.value;
+            if(formularioAltaArticulo.Subtitulada.checked){
+                bSubtitulada=true;
+            }else {
+                bSubtitulada=false;
+            }
+            if(dFechaEstreno == ""){
+                mostrarMensaje("Indique la fecha de estreno");
+            }else {
+            let oArticulo= new DVD(iIdArticulo,sTitulo,dFechaEstreno,bSubtitulada);
+            mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
+            document.getElementById("comboArti").innerHTML=crearComboArticulos();
+            ocultarTodosLosFormularios();
+            }
+        }else {
+            let sAutor =formularioAltaArticulo.sAutor.value;
+            let iNumPaginas = formularioAltaArticulo.iNumPaginas.value;
+            if(sAutor == "" || iNumPaginas == ""){
+                mostrarMensaje("Debe rellenar todos los campos");
+            }else {
+            let oArticulo= new Libro(iIdArticulo,sTitulo,sAutor,iNumPaginas);
+            mostrarMensaje(oBiblioteca.altaArticulo(oArticulo));
+            document.getElementById("comboArti").innerHTML=crearComboArticulos();
+            ocultarTodosLosFormularios();
+            }
+        }
     }
+    
 }
 function listadoUsuarios(){
-    var oVentanaUsuarios = window.open("ListadoDeUsuarios.html","nuevaVentana1");
-    let elemento = oVentanaUsuarios.document.getElementById('escribirTablaUsuarios');
+    var oVentanaUsuarios = window.open("ListadoDeUsuarios.html","nuevaVentana1"); 
     ocultarTodosLosFormularios();
-    oVentanaUsuarios.document.write(oBliblioteca.listadoUsuarios());
 }
 function listadoArticulos(){
     var oVentanaArticulos = window.open("ListadoDeArticulos.html","nuevaVentana2");
-    oVentanaArticulos.document.write(oBliblioteca.listadoArticulos());
     ocultarTodosLosFormularios();
 }
 function ocultarTodosLosFormularios(){
@@ -106,6 +125,7 @@ function creaPrestamo() {
 function listarPrestamosUsuarios(){
     let usuarioId = formularioListadoPrestamosUsuarios.idUsuario.value;
     buscarUsuarioEnPrestamo(usuarioId,oBiblioteca.prestamos);
+    document.getElementById("tablaPrestamosUsuarios").innerHTML=oBiblioteca.listarPrestamosUsuarios(usuarioId);
 }
 
 

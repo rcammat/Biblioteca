@@ -105,8 +105,10 @@ Biblioteca.prototype.listadoPrestamosUsuarios = function(idUsuario){
     let sTabla = oPrestamo[0].toHTMLRow();*/
 
     let sTabla ="";
-    for(let prestamoUsu of arrayPrestamosdelUsuario)
-    sTabla += prestamoUsu.toHTMLRow();
+    for(let prestamoUsu of arrayPrestamosdelUsuario){
+        sTabla += prestamoUsu.toHTMLRow();
+    }
+    
 
     return sTabla;
 }
