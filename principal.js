@@ -1,7 +1,6 @@
 "use strict";
 let oBiblioteca =  new Biblioteca();
 añadeDatos();
-fechaHoy();
 function añadeDatos(){
     oBiblioteca.altaUsuario(1,"Juan","Perez","112");
     oBiblioteca.altaUsuario(2,"Pepe","Montoya","016");
@@ -18,6 +17,7 @@ function gestionFormularios(sNombreFormulario){
     ocultarTodosLosFormularios();
     document.getElementById(sNombreFormulario).reset();
     document.getElementById(sNombreFormulario).style.display = "Block";
+    fechaHoy();
 }
 
 function añadeUsuario(){
@@ -88,6 +88,10 @@ function ocultarTodosLosFormularios(){
     document.getElementById('formularioListadoPrestamos').style.display='none';
     document.getElementById('formularioListadoPrestamosUsuarios').style.display='none';
     document.getElementById('formularioListadoTipoArticulos').style.display='none';
+    document.getElementById("tablaPrestamos").innerHTML="";
+    document.getElementById("tablaPrestamosUsuarios").innerHTML="";
+    document.getElementById("tablaTipoArticulos").innerHTML="";
+
 }
 function mostrarContenido(){
     if(formularioAltaArticulo.radiobtnTipoArticuloDVD.checked){
@@ -105,21 +109,32 @@ function creaPrestamo() {
     let arrayTituloArticulos = formularioAltaPrestamo.textAreaArticulos.value.split("\n");
     let arrayArticulos=new Array();
     let iIdUsuario = formularioAltaPrestamo.idUsuario.value;
-    let dFechaInicio = formularioAltaPrestamo.fechaInicio.value;
+    let dFechaInicio = new Date().toISOString().slice(0, 10);
     let dFechaFin = formularioAltaPrestamo.fechaFin.value;
-    for( let sTitulo of arrayTituloArticulos){
-        if(sTitulo!="")
-         arrayArticulos.push((buscarArticuloPorTitulo(sTitulo)));
+
+    if(iIdPrestamo =="" || formularioAltaPrestamo.textAreaArticulos.value == "" || iIdUsuario == "" || dFechaFin == ""){
+        mostrarMensaje("Debe rellenar todos los campos");
     }
-    if (buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
-        let usuarioSinPrestamos = obtenerUsuario(iIdUsuario);
-        let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);
-        mostrarMensaje(oBiblioteca.añadePrestamo(oPrestamo));
+    else if(dFechaFin < dFechaInicio)
+    {
+        mostrarMensaje("La fecha final no puede ser menor que la inicial");
     }
     else{
-        mostrarMensaje("No existe ese usuario.");
+        for( let sTitulo of arrayTituloArticulos){
+            if(sTitulo!="")
+            arrayArticulos.push((buscarArticuloPorTitulo(sTitulo)));
+        }
+        if (buscaUsuario(iIdUsuario,oBiblioteca.usuarios)) {
+            let usuarioSinPrestamos = obtenerUsuario(iIdUsuario);
+            let oPrestamo = new Prestamo(iIdPrestamo,arrayArticulos,usuarioSinPrestamos,dFechaInicio,dFechaFin);
+            mostrarMensaje(oBiblioteca.añadePrestamo(oPrestamo));
+            ocultarTodosLosFormularios();
+            document.getElementById("textAreaArticulos").textContent="";
+        }
+        else{
+            mostrarMensaje("No existe ese usuario.");
+        }
     }
-
 }
 
 function listarPrestamosUsuarios(){
@@ -164,7 +179,7 @@ function añadirArticulo(){
     
 }
 function fechaHoy() {
-    document.getElementById('fechaInicio').value = new Date().toISOString().slice(0, 10)
+    document.getElementById('fechaInicio').value = new Date().toISOString().slice(0, 10);
 }
 
 function devuelvePrestamo(){
@@ -206,11 +221,16 @@ function listarPrestamosUsuarios(){
 function listarPrestamosFecha(){
     let fechaInicio = formularioListadoPrestamos.fechaInicio.value;
     let fechaFin = formularioListadoPrestamos.fechaFin.value;
+    if(fechaFin < fechaInicio)
+    {
+        mostrarMensaje("La fecha final no puede ser menor que la inicial.");
+    }
+    else{
     let cadena = "<tr><th>ID</th><th>Artículos</th><th>Usuario</th><th>Fecha de Inicio</th><th>Fecha de Fin</th></tr>";
     cadena += oBiblioteca.listadoPrestamosPorFecha(fechaInicio,fechaFin);
 
     document.getElementById("tablaPrestamos").innerHTML=cadena;
-
+    }
 }
 
 function mostrarMensaje(mensaje){
